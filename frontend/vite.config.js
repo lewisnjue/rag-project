@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',
+    outDir: 'DIST_DEPLOYMENT_FRONT_END',
     assetsDir: 'assets', // Ensures assets are properly copied
   },
 });
