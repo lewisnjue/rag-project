@@ -1,0 +1,20 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.dot-flashing {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #4b90ff;
+  animation: dot-flashing 1.2s infinite linear;
+}
+
+@keyframes dot-flashing {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
