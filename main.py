@@ -46,11 +46,13 @@ app.add_middleware(
 # Dummy function to simulate RAG pipeline
 def search_similar_embeddings(query, top_k=7):
     response = index.query(
-        vector= get_embedding(query),
-        top_k=10,
+        vector=get_embedding(query),
+        top_k=top_k,
         include_values=True,
         include_metadata=True,
     )
+    return response  # <-- Fix: Return the response
+
 def generate_answer_from_deployed_model(context, query):
   client = Client("lewisnjue/mistralai-Mistral-7B-Instruct-v0.3") 
   prompt = f"Answer the following question based on the context:\n\nContext: {context}\n\nQuestion: {query}\n\nAnswer:"
@@ -69,9 +71,11 @@ def ask_question(request: QueryRequest) -> Dict[str, str]:
     """Handles user question and generates an answer."""
     query = request.question
     result = search_similar_embeddings(query)
-    context = " ".join([item.metadata["text"] for item in result.matches])
+    if not result or not hasattr(result, "matches"):
+        return {"answer": "No relevant context found in the knowledge base."}
+
+    context = " ".join([item.metadata["text"] for item in result.matches if "text" in item.metadata])
     answer = generate_answer_from_deployed_model(context, query)
     return {"answer": answer}
-
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
