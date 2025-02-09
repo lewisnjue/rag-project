@@ -69,7 +69,7 @@ def ask_question(request: QueryRequest) -> Dict[str, str]:
     """Handles user question and generates an answer."""
     query = request.question
     result = search_similar_embeddings(query)
-    context = " ".join([item.metadata["text"] for item in response.matches])
+    context = " ".join([item.metadata["text"] for item in result.matches])
     answer = generate_answer_from_deployed_model(context, query)
     return {"answer": answer}
 
