@@ -7,6 +7,8 @@ from gradio_client import Client
 from dotenv import load_dotenv
 from pinecone import Pinecone
 import os 
+import torch
+from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 UPSTASH_TOKEN = os.getenv("UPSTASH_TOKEN")
