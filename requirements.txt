@@ -4,3 +4,4 @@ uvicorn
 gradio
 upstash_vector
 python-dotenv
+pinecone
