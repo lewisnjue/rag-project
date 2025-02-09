@@ -5,3 +5,4 @@ gradio
 upstash_vector
 python-dotenv
 pinecone
+sentence-transformers
