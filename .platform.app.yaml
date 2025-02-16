@@ -1,0 +1,32 @@
+# .platform.app.yaml
+
+# The name of this app. Must be unique within the project.
+name: app
+
+# The runtime type. Since we are using Docker, we set the type to "python" but will override with a Dockerfile.
+type: "python:3.10"
+
+# Use the Dockerfile for building the application
+runtime:
+  type: "docker"
+  dockerfile: "Dockerfile"
+
+# The size of the persistent disk (in MB).
+disk: 1024  # 1GB should be enough for dependencies and temp storage
+
+# Web service configuration
+web:
+  commands:
+    start: "uvicorn main:app --host 0.0.0.0 --port 8000"
+  upstream:
+    socket_family: tcp
+  locations:
+    "/":
+      passthru: true
+
+# Environment variables (if needed)
+variables:
+  UPSTASH_TOKEN: "${UPSTASH_TOKEN}"
+  INDEX_URL: "${INDEX_URL}"
+  PICOCODE_APIKEY: "${PICOCODE_APIKEY}"
+  EMBED_MODEL: "${EMBED_MODEL}"
