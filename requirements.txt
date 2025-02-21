@@ -2,8 +2,9 @@ fastapi
 pydantic
 uvicorn
 gradio
-upstash_vector
-python-dotenv
 pinecone
-sentence-transformers
 torch
+sentence-transformers
+pinecone-client
+gradio_client
+python-dotenv
