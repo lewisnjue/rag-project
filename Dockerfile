@@ -1,11 +1,15 @@
-# Backend Dockerfile
+# Use a lightweight Python image
 FROM python:3.10-slim
 
+# Set working directory
 WORKDIR /app
 
+# Copy the requirements file and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py .
+# Copy the application code
+COPY app.py .
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the Gradio application
+CMD ["python", "app.py"]
