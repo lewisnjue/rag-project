@@ -4,6 +4,5 @@ uvicorn
 python-dotenv
 pinecone
 sentence-transformers
-torch
 google-genai
 requests

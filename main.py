@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict
 import uvicorn
-import torch
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 from pathlib import Path
@@ -21,7 +20,7 @@ app = FastAPI()
 client = genai.Client(api_key=GOOGLE_GEMINI_API_KEY)
 embed_model = SentenceTransformer(
     "sentence-transformers/all-MiniLM-L6-v2",
-    device="cuda" if torch.cuda.is_available() else "cpu",
+    device="cuda",
     use_auth_token=EMBED_MODEL
 )
 def get_embedding(text):
