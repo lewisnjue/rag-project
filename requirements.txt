@@ -1,9 +1,12 @@
 fastapi
 pydantic
 uvicorn
-gradio
-upstash_vector
 python-dotenv
 pinecone
 sentence-transformers
 torch
+transformers
+mistral_inference
+google
+google-generativeai
+google-genai
